@@ -8,11 +8,22 @@
 
 import Foundation
 
+var dateToolsBundleLocalize: String?
+
 public extension Bundle {
+
+    class func setDateToolsBundleLocalize(_ localize: String?) {
+        dateToolsBundleLocalize = localize
+    }
   
   class func dateToolsBundle() -> Bundle {
     let assetPath = Bundle(for: Constants.self).resourcePath!
-    return Bundle(path: NSString(string: assetPath).appendingPathComponent("DateTools.bundle"))!
+    let bundle = Bundle(path: NSString(string: assetPath).appendingPathComponent("DateTools.bundle"))!
+    if let localize = dateToolsBundleLocalize, let path = bundle.path(forResource: localize, ofType: "lproj") {
+        return Bundle(path: path) ?? bundle
+    }
+    return bundle
   }
+
 }
 
