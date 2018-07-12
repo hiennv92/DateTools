@@ -12,7 +12,7 @@ var dateToolsBundleLocalize: String?
 
 public extension Bundle {
 
-    class func setDateToolsBundleLocalize(_ localize: String?) {
+    public class func setDateToolsBundleLocalize(_ localize: String?) {
         dateToolsBundleLocalize = localize
     }
   
